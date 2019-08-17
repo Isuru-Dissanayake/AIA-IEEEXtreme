@@ -13,7 +13,8 @@ def getWays(n,c):
         print (array)
     return(array[n])
 
-n = int(input(""))
+m = list(map(int,(input("")).split()))
+n = m[0]
 c = list(map(int,(input("")).split()))
 
 #n = 4
