@@ -1,3 +1,5 @@
+#https://www.hackerrank.com/challenges/coin-change/problem?isFullScreen=false
+
 n = 4
 c = [1,2,3]
 
@@ -10,6 +12,8 @@ def getWays(n,c):
             if ind < 0:
                 pass
             else:
-                array[j] = array[j] + 
+                array[j] = array[j] + array[ind]
+        print (array)
+    return(array[len(c) - 1])
 
-getWays(n,c)
+print(getWays(n,c))
