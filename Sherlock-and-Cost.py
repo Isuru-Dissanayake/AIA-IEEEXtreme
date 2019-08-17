@@ -1,6 +1,6 @@
 def getCost(b):
     cost = []
-    for x in range(len(b)):
+    for i in range(len(b)):
         cost.append([0,0])
     for i in range(1,len(b)):
         cost[i][0] = cost[i-1][1] + abs(b[i-1] - 1)
