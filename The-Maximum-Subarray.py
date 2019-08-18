@@ -1,35 +1,17 @@
-def maxSubarray(array):
-    subarraySum = 0
-    subsquenceSum = 0
-    subarraySumMax = 0
-    arrayNew = array[::-1]
-    count = 0
-    for i in range(len(array)):
-        if (arrayNew[i] > 0):
-            arrayNew = arrayNew[i:]
-            count = 1
-            break
-    if (count == 0):
-        return (max(array),max(array))
-    else:
-        arrayNew = arrayNew[::-1]
-        i = 0
-        while (i < len(arrayNew)):
-            if (arrayNew[i] > 0):
-                subarraySum = subarraySum + arrayNew[i]
-                subsquenceSum += arrayNew[i]
-                i+=1
-            elif ((subarraySum >= arrayNew[i]) and (arrayNew[i+1] >= arrayNew[i])):
-                subarraySum = subarraySum + arrayNew[i] + arrayNew[i+1]
-                subsquenceSum += arrayNew[i+1]
-                i+=2
-            elif (subarraySum <= arrayNew[i]):
-                subarraySumMax = max(subarraySumMax,subarraySum)
-        subarraySumMax = max(subarraySum,subarraySumMax)
-        return (subarraySumMax, subsquenceSum)
-
-array = [2, -1, 2, 3, 4, -5]
-a, b = maxSubarray(array)
-ans = str(a) + " " + str(b)
-print (ans)
-            
+for q in range(int(input())):
+    n = int(input())
+    array = list(map(int,input().split()))
+    max_sum = -99999999
+    c_sum = 0
+    sum1 = 0
+    for i in range(n):
+        sum1+=array[i]
+        if array[i]>0:
+            c_sum += array[i]
+        if sum1>max_sum:
+            max_sum = sum1
+        if sum1<0:
+            sum1 = 0
+    if c_sum == 0:
+        c_sum = max(array)
+    print (max_sum,c_sum)
