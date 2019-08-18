@@ -1,3 +1,5 @@
+#https://www.hackerrank.com/challenges/maxsubarray/problem
+
 for q in range(int(input())):
     n = int(input())
     array = list(map(int,input().split()))
