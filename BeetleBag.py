@@ -1,7 +1,8 @@
 #https://csacademy.com/ieeextreme-practice/task/ed8629419f140a5a2c923b049aba1224/
 
 def maxPower(w, g, w_num):
-    ans = 0
+    power = 0
+    
     
 
 t = int(input(""))
