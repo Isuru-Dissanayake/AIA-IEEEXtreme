@@ -7,4 +7,4 @@ for testCases in range(t):
     for i in range(n):
         dogs.append(int(input("")))
     dogs.sort()
-    print (dogs)
+    
