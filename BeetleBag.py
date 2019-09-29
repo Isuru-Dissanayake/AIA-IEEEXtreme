@@ -1,36 +1,40 @@
 #https://csacademy.com/ieeextreme-practice/task/ed8629419f140a5a2c923b049aba1224/
-
-def findMethods(n):
-    indexArr = []
-    if n%2 == 0:
-        for r in range(1,int(n/2) - 1):
-            arr1 = []
-            arr1.append(r)
-            arr1.append(n-r)
-            indexArr.append(arr1)
-    if n%2 == 1:
-        for r in range(1,int(n/2)):
-            arr1 = []
-            arr1.append(r)
-            arr1.append(n-r)
-            indexArr.append(arr1)
-    return (indexArr)
-
 def maxPower(w, g, w_num):
-    power = [0 for e in range(w_num+1)]
-    for k in range(len(power)):
-        for j in range(len(w)):
-            if w[j] == k:
-                power[k] = max(power[k],g[j])
-    print (power)
-    for k in range(len(power)):
-        indexArr = findMethods(k)
-        for f in range(len(indexArr)):
-            num1 = power[indexArr[f][0]]
-            num2 = power[indexArr[f][1]]
-            power[k] = max(power[k],(num1+num2))
-    print (power)
+    power = [[0 for i in range(len(w))] for i in range(w_num+1)]
+    for i in range(len(w)):
+        for j in range(w_num+1):
+            if i == 0:
+                if j >= w[i]:
+                    power[j][i] = g[i]
+            else:
+                if j >= w[i]:
+                    empty = j -w[i]
+                    power[j][i] = max(power[empty]) + g[i]
 
+    print (max(power[-1]))
+'''
+def maxPower(w, g, w_num):
+    power = [[0 for i in range(w_num+1)] for i in range(len(w))]
+    #print (power)
+    for i in range(len(w)):
+        for j in range(w_num+1):
+            if i == 0:
+                if j >= w[i]:
+                    power[i][j] = g[i]
+            else:
+                if j >= w[i]:
+                    empty = j - w[i]
+                    emptyArr = []
+                    for v in range(i):
+                        emptyArr.append(power[v][empty])
+                    power[i][j] = max(emptyArr) + g[i]
+        #print (power)
+    powerArr = []
+    for i in range(len(w)):
+        powerArr.append(power[i][w_num])
+    #print (power)
+    print (max(powerArr))
+'''
 t = int(input(""))
 for testCases in range(t):
     wg = list(map(int,input("").split()))
