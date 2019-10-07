@@ -1,49 +1,20 @@
-#https://csacademy.com/ieeextreme-practice/task/ed8629419f140a5a2c923b049aba1224/
-def maxPower(w, g, w_num):
-    power = [[0 for i in range(len(w))] for i in range(w_num+1)]
-    for i in range(len(w)):
-        for j in range(w_num+1):
-            if i == 0:
-                if j >= w[i]:
-                    power[j][i] = g[i]
-            else:
-                if j >= w[i]:
-                    empty = j -w[i]
-                    power[j][i] = max(power[empty]) + g[i]
+import math
 
-    print (max(power[-1]))
-'''
-def maxPower(w, g, w_num):
-    power = [[0 for i in range(w_num+1)] for i in range(len(w))]
-    #print (power)
-    for i in range(len(w)):
-        for j in range(w_num+1):
-            if i == 0:
-                if j >= w[i]:
-                    power[i][j] = g[i]
-            else:
-                if j >= w[i]:
-                    empty = j - w[i]
-                    emptyArr = []
-                    for v in range(i):
-                        emptyArr.append(power[v][empty])
-                    power[i][j] = max(emptyArr) + g[i]
-        #print (power)
-    powerArr = []
-    for i in range(len(w)):
-        powerArr.append(power[i][w_num])
-    #print (power)
-    print (max(powerArr))
-'''
-t = int(input(""))
-for testCases in range(t):
-    wg = list(map(int,input("").split()))
-    w_num = wg[0]
-    g_num = wg[1]
-    w = []
-    g = []
-    for i in range(g_num):
-        wg = list(map(int,input("").split()))
-        w.append(wg[0])
-        g.append(wg[1])
-    maxPower(w, g, w_num)
+def solve():
+    C, G = [int(i) for i in input().split()]
+    gadgets = [[int(i) for i in input().split()] for _ in range(G)]
+    sol = [[0] * (C+1) for _ in range(G+1)]
+    for i in range(1, G+1):
+        for j in range(1, C+1):
+            new_j = j - gadgets[i-1][0]
+            if new_j < 0:
+                sol[i][j] = sol[i-1][j]
+                continue
+            sol[i][j] = max(sol[i-1][j], gadgets[i-1][1]+sol[i-1][new_j])
+    print (sol[-1][-1])
+
+
+
+N = int(input())
+for _ in range(N):
+    solve()
